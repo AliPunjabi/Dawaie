@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:figmaproject/Customs/Export/import.dart';
+import 'package:Dawaie/Customs/Export/import.dart';
 
+// this is landing page
 class dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //double width: MediaQuery.of(context).size.width ,
+      //Using gradient container as our background
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -16,6 +19,9 @@ class dashboard extends StatelessWidget {
           ],
         ),
       ),
+
+      // landing page content starts from here
+
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Padding(
@@ -65,14 +71,18 @@ class dashboard extends StatelessWidget {
                     ),
                     backgroundBlendMode: BlendMode.darken),
                 child: CustomElevatedButton(
+                    // cutom button for signup, you can check it properties from lib/Customs/button.dart
                     onPressed: () {
                       Navigator.of(context).push(
+                        //transitions used inside navigation for smooth exchange of screens
                         Transitions(
+                            //you can check its properties from lib/Customs/transitions.dart
                             transitionType: TransitionType.fade,
                             curve: Curves.bounceInOut,
                             duration: const Duration(milliseconds: 500),
                             reverseCurve: Curves.bounceOut,
-                            widget: signup()),
+                            widget:
+                                signup()), //this will leads you to signup screen
                       );
                     },
                     child: Text('Sign Up',
@@ -97,6 +107,7 @@ class dashboard extends StatelessWidget {
                       ],
                     ),
                     backgroundBlendMode: BlendMode.darken),
+                //login button
                 child: CustomElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
@@ -105,12 +116,14 @@ class dashboard extends StatelessWidget {
                             curve: Curves.bounceInOut,
                             duration: const Duration(milliseconds: 500),
                             reverseCurve: Curves.bounceOut,
-                            widget: login()),
+                            widget:
+                                login()), //this will leads you to login screen
                       );
                     },
                     child: Text('Login',
                         style: TextStyle(
-                          color: Constants.colorbuttonfont,
+                          color: Constants
+                              .colorbuttonfont, // check lib/Customs/Constants.dart for all colors and fonts used in this app
                         ))),
               ),
             )

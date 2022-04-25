@@ -1,4 +1,4 @@
-import 'package:figmaproject/Customs/Export/import.dart';
+import 'package:Dawaie/Customs/Export/import.dart';
 
 //Enumeration is used to define named constant values
 enum TransitionType {

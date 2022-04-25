@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:figmaproject/Customs/Export/import.dart';
+import 'package:Dawaie/Customs/Export/import.dart';
 
 class login extends StatelessWidget {
   @override
@@ -62,6 +62,7 @@ class login extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
+            //textfield for password
             CustomTextField(
               onFieldSubmitted: (v) {
                 FocusScope.of(context).nextFocus();
@@ -75,6 +76,7 @@ class login extends StatelessWidget {
             ),
             SizedBox(
               width: 350,
+              //here gradient is used again with blend mode to adjust button colors
               child: Container(
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -86,16 +88,18 @@ class login extends StatelessWidget {
                       ],
                     ),
                     backgroundBlendMode: BlendMode.darken),
+                //login button
                 child: CustomElevatedButton(
                     onPressed: () {
-                      /*Navigator.of(context).push(
+                      Navigator.of(context).push(
                         Transitions(
                             transitionType: TransitionType.fade,
                             curve: Curves.bounceInOut,
                             duration: const Duration(milliseconds: 500),
                             reverseCurve: Curves.bounceOut,
-                            widget: SigninScreen()),
-                      );*/
+                            widget: home(
+                                0)), //homescreen is on index of zero in list of widgets on home, so we are passing zero
+                      );
                     },
                     child: Text('Login',
                         style: TextStyle(
@@ -106,36 +110,36 @@ class login extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  Transitions(
-                      transitionType: TransitionType.fade,
-                      curve: Curves.bounceInOut,
-                      reverseCurve: Curves.bounceOut,
-                      widget: signup()),
-                );
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Don\'t have account? ',
-                    style: TextStyle(
-                      fontFamily: Constants.appFont,
-                      fontSize: 14,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Don\'t have account? ',
+                  style: TextStyle(
+                    fontFamily: Constants.appFont,
+                    fontSize: 14,
                   ),
-                  Text(
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      Transitions(
+                          transitionType: TransitionType.fade,
+                          curve: Curves.bounceInOut,
+                          reverseCurve: Curves.bounceOut,
+                          widget: signup()),
+                    );
+                  },
+                  child: Text(
                     'Sign Up',
                     style: TextStyle(
                         fontFamily: Constants.appFont,
-                        fontSize: 16,
+                        fontSize: 18,
                         color: Colors.black),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ]),
         ),

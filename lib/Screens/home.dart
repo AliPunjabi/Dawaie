@@ -1,9 +1,9 @@
 // ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers, library_private_types_in_public_api
-import 'package:figmaproject/Customs/Export/import.dart';
+import 'package:Dawaie/Customs/Export/import.dart';
 
 // ignore: must_be_immutable
 class home extends StatefulWidget {
-  int? _currentindex;
+  int? _currentindex; //used for bottom navigation bar
   int? savePrevIndex;
   home(_currentindex, {Key? key}) : super(key: key) {
     this._currentindex = _currentindex;
@@ -18,10 +18,73 @@ class _homeState extends State<home> {
     super.initState();
   }
 
+// these are our screens for bottom navigation bar
   final List<Widget> _children = [
-    homescreen(),
+    homescreen(), //you will land on this screen when you tap on home icon in bottom nav bar
+    //QRcodescreen(), your qrcode screen will be here
+    //notificationsscreen(), your notification screen will be here
+    //settings(), your setting screen will be here
   ];
-
+  // here willpop is used to deal with android back button functionality
+  Future<bool> _onWillPop() {
+    Future<bool> value = Future.value(false);
+    setState(
+      () {
+        if (widget._currentindex != 0) {
+          /*if (widget._currentIndex == widget.savePrevIndex) {
+          value  = Future.value(false);
+          widget._currentIndex =  widget._currentIndex! - 1;
+          setState(() {});
+        } else if (widget.savePrevIndex != null) {
+          value  = Future.value(false);
+          widget._currentIndex = widget.savePrevIndex;
+          setState(() {});
+        } else {*/
+          value = Future.value(false);
+          widget._currentindex = 0;
+          setState(() {});
+          // }
+        } else {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                title: Text('Confirm Exit'),
+                content: Text('Are you sure to exit?'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text(
+                      'Yes',
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () {
+                      value = Future.value(false);
+                      SystemNavigator.pop();
+                    },
+                  ),
+                  TextButton(
+                    child: Text(
+                      'No',
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      value = Future.value(true);
+                    },
+                  )
+                ],
+              );
+            },
+          );
+        }
+      },
+    );
+    return value;
+  }
   // ignore: missing_return
 
   @override
@@ -42,7 +105,12 @@ class _homeState extends State<home> {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: _children[widget._currentindex!],
+          //index stack is used here to save the state of previous class while navigating using bottom nav bar
+          body: IndexedStack(
+            index: widget._currentindex,
+            children: _children,
+          ),
+          //bottom navigation which appears at the bottom of our homescreen
           bottomNavigationBar: BottomNavigationBar(
             elevation: 0,
             type: BottomNavigationBarType.fixed,
@@ -60,6 +128,7 @@ class _homeState extends State<home> {
               });
             },
             items: [
+              // home
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 5.h),
@@ -77,6 +146,7 @@ class _homeState extends State<home> {
                 ),
                 label: 'Home',
               ),
+              //QRcode
               BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.only(bottom: 5.h),
@@ -93,6 +163,7 @@ class _homeState extends State<home> {
                     ),
                   ),
                   label: 'QR Code'),
+              //Notifications
               BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.only(bottom: 5.h),
@@ -109,6 +180,7 @@ class _homeState extends State<home> {
                     ),
                   ),
                   label: 'Notification'),
+              //settings
               BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.only(bottom: 5.h),

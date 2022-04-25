@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:figmaproject/Customs/Export/import.dart';
+import 'package:Dawaie/Customs/Export/import.dart';
 
 class signup extends StatelessWidget {
   final _name = TextEditingController();
@@ -137,7 +137,7 @@ class signup extends StatelessWidget {
                       transitionType: TransitionType.fade,
                       curve: Curves.bounceInOut,
                       reverseCurve: Curves.bounceOut,
-                      widget: signup()),
+                      widget: login()),
                 );
               },
               child: Row(
