@@ -16,4 +16,14 @@ class Constants {
   static Color colorcard = Color.fromARGB(255, 16, 153, 199);
   static Color colorappbar = const Color(0xFFEEFCF9);
   static String appFont = 'Raleway';
+    static toastMessage(String msg) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Constants.colorfont,
+        textColor: Constants.colorappbar,
+        fontSize: 16.0);
+  }
 }

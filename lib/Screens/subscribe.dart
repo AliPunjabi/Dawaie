@@ -2,7 +2,7 @@
 
 import 'package:Dawaie/Customs/Export/import.dart';
 
-class signup extends StatelessWidget {
+class subscribe extends StatelessWidget {
   final _name = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class signup extends StatelessWidget {
               height: 10,
             ),
             Text(
-              'Sign Up',
+              "Subscribe Now in just \$10.0",
               style: TextStyle(
                 fontFamily: 'Raleway',
                 color: Constants.colorfont,
@@ -47,7 +47,7 @@ class signup extends StatelessWidget {
             ),
             Image.asset(
               'assets/images/lottie.png',
-              height: 250,
+              height: 230,
             ),
             SizedBox(
               height: 40,
@@ -57,8 +57,8 @@ class signup extends StatelessWidget {
                 FocusScope.of(context).nextFocus();
               },
               textInputAction: TextInputAction.next,
-              hintText: 'Full Name',
-              textInputType: TextInputType.name,
+              hintText: 'Card Number',
+              textInputType: TextInputType.number,
               textEditingController: _name,
             ),
             SizedBox(
@@ -69,7 +69,7 @@ class signup extends StatelessWidget {
                 FocusScope.of(context).nextFocus();
               },
               textInputAction: TextInputAction.next,
-              hintText: 'Emirates ID',
+              hintText: 'Name on card',
               textInputType: TextInputType.text,
             ),
             SizedBox(
@@ -80,8 +80,8 @@ class signup extends StatelessWidget {
                 FocusScope.of(context).nextFocus();
               },
               textInputAction: TextInputAction.next,
-              hintText: 'Email',
-              textInputType: TextInputType.emailAddress,
+              hintText: 'Expiration (MM/YY)',
+              textInputType: TextInputType.number,
             ),
             SizedBox(
               height: 20,
@@ -91,8 +91,8 @@ class signup extends StatelessWidget {
                 FocusScope.of(context).nextFocus();
               },
               textInputAction: TextInputAction.next,
-              hintText: 'Password',
-              textInputType: TextInputType.visiblePassword,
+              hintText: 'CVV',
+              textInputType: TextInputType.number,
             ),
             SizedBox(
               height: 20,
@@ -112,16 +112,19 @@ class signup extends StatelessWidget {
                     backgroundBlendMode: BlendMode.darken),
                 child: CustomElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        Transitions(
-                            transitionType: TransitionType.fade,
-                            curve: Curves.bounceInOut,
-                            duration: const Duration(milliseconds: 500),
-                            reverseCurve: Curves.bounceOut,
-                            widget: subscribe()),
-                      );
+                      Constants.toastMessage("Successfully Paid");
+                      Future.delayed(Duration(seconds: 2), () {
+                        Navigator.of(context).push(
+                          Transitions(
+                              transitionType: TransitionType.fade,
+                              curve: Curves.bounceInOut,
+                              duration: const Duration(milliseconds: 500),
+                              reverseCurve: Curves.bounceOut,
+                              widget: home(0)),
+                        );
+                      });
                     },
-                    child: Text('Continue',
+                    child: Text('Pay Now & Continue',
                         style: TextStyle(
                           color: Constants.colorbuttonfont,
                         ))),
