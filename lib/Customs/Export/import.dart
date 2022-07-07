@@ -14,6 +14,7 @@ export 'package:Dawaie/Screens/addreminder.dart';
 export 'package:Dawaie/Screens/editreminder.dart';
 export 'package:Dawaie/Screens/listreminder.dart';
 export 'package:Dawaie/Screens/subscribe.dart';
+export 'package:Dawaie/Screens/subscribe0.dart';
 export 'package:Dawaie/Customs/applabel.dart';
 export 'package:flutter/services.dart';
 export 'package:fluttertoast/fluttertoast.dart';

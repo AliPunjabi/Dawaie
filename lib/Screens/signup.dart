@@ -118,7 +118,7 @@ class signup extends StatelessWidget {
                             curve: Curves.bounceInOut,
                             duration: const Duration(milliseconds: 500),
                             reverseCurve: Curves.bounceOut,
-                            widget: subscribe()),
+                            widget: subscribe0()),
                       );
                     },
                     child: Text('Continue',
