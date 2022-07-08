@@ -2,13 +2,16 @@
 
 import 'package:Dawaie/Customs/Export/import.dart';
 
+enum SingingCharacter { lafayette, jefferson }
+
 class subscribe0 extends StatefulWidget {
   @override
   State<subscribe0> createState() => _subscribe0State();
 }
 
 class _subscribe0State extends State<subscribe0> {
-  String type = "Debit/Credit";
+  SingingCharacter? _character = SingingCharacter.lafayette;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,49 +113,54 @@ class _subscribe0State extends State<subscribe0> {
                           // required properties in this widget
                           context: context,
                           builder: (BuildContext context) {
-                            return SizedBox(
-                              height: 200,
-                              child: Center(
-                                  child: Column(children: [
-                                ListTile(
-                                  title: Text("Debit/Credit"),
-                                  leading: Radio(
-                                      value: "Debit/Credit",
-                                      groupValue: type,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          type = value.toString();
-                                        });
-                                      }),
-                                ),
-                                ListTile(
-                                  title: Text("Paypal"),
-                                  leading: Radio(
-                                      value: "Paypal",
-                                      groupValue: type,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          type = value.toString();
-                                        });
-                                      }),
-                                ),
-                                CustomElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        Transitions(
-                                            transitionType: TransitionType.fade,
-                                            curve: Curves.bounceInOut,
-                                            duration: const Duration(
-                                                milliseconds: 500),
-                                            reverseCurve: Curves.bounceOut,
-                                            widget: subscribe()),
-                                      );
-                                    },
-                                    child: Text('Continue',
-                                        style: TextStyle(
-                                          color: Constants.colorbuttonfont,
-                                        ))),
-                              ])),
+                            return StatefulBuilder(
+                              builder: (BuildContext context, setState) {
+                                return SizedBox(
+                                  height: 200,
+                                  child: Center(
+                                      child: Column(children: [
+                                    ListTile(
+                                      title: const Text('Debit/Credit'),
+                                      leading: Radio<SingingCharacter>(
+                                        value: SingingCharacter.lafayette,
+                                        groupValue: _character,
+                                        onChanged: (SingingCharacter? value) {
+                                          _character = value;
+                                          setState(() {});
+                                        },
+                                      ),
+                                    ),
+                                    ListTile(
+                                      title: const Text('Paypal'),
+                                      leading: Radio<SingingCharacter>(
+                                        value: SingingCharacter.jefferson,
+                                        groupValue: _character,
+                                        onChanged: (SingingCharacter? value) {
+                                          _character = value;
+                                          setState(() {});
+                                        },
+                                      ),
+                                    ),
+                                    CustomElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            Transitions(
+                                                transitionType:
+                                                    TransitionType.fade,
+                                                curve: Curves.bounceInOut,
+                                                duration: const Duration(
+                                                    milliseconds: 500),
+                                                reverseCurve: Curves.bounceOut,
+                                                widget: subscribe()),
+                                          );
+                                        },
+                                        child: Text('Continue',
+                                            style: TextStyle(
+                                              color: Constants.colorbuttonfont,
+                                            ))),
+                                  ])),
+                                );
+                              },
                             );
                           },
                         );
